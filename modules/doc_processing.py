@@ -74,6 +74,10 @@ def split_data(documents):
 
 def save_embeddings(text_chunks):
     """Generate embeddings using Google Generative AI and save to a FAISS vector database."""
+    
+    if not os.path.exists(VECTOR_DB_PATH):
+        os.makedirs(VECTOR_DB_PATH)
+        
     # Use Google Generative AI for embeddings
     embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004")
 
