@@ -182,7 +182,11 @@ if st.button("Clear All Uploaded Data"):
     embedding_path = os.path.join(base_dir, "..","data", "vector_store.faiss")
     
     if os.path.exists(upload_dir):
-        shutil.rmtree(upload_dir)
+        for file_name in os.listdir(upload_dir):
+            file_path = os.path.join(upload_dir, file_name)
+            # Check if it is a file and delete it
+            if os.path.isfile(file_path):
+                os.remove(file_path)
     
     if os.path.exists(embedding_path):
         shutil.rmtree(embedding_path)
